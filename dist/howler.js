@@ -18,21 +18,16 @@
     var AudioCtor = window.AudioContext || window.webkitAudioContext;
 
     desiredSampleRate =
-      typeof desiredSampleRate === "number" ? desiredSampleRate : 48000;
+      typeof desiredSampleRate === "number" ? desiredSampleRate : 44100;
     var context = new AudioCtor();
 
     // Check if hack is necessary. Only occurs in iOS6+ devices
     // and only when you first boot the iPhone, or play a audio/video
     // with a different sample rate
-    if (context) {
-      alert("context.sampleRate" + context.sampleRate);
-    }
-    alert("desired sample rate" + desiredSampleRate);
     if (
       /(iPhone|iPad)/i.test(navigator.userAgent) &&
       context.sampleRate !== desiredSampleRate
     ) {
-      alert("iPhone or iPad");
       var buffer = context.createBuffer(1, 1, desiredSampleRate);
       var dummy = context.createBufferSource();
       dummy.buffer = buffer;
@@ -385,10 +380,10 @@
       // Some mobile devices/platforms have distortion issues when opening/closing tabs and/or web views.
       // Bugs in the browser (especially Mobile Safari) can cause the sampleRate to change from 44100 to 48000.
       // By calling Howler.unload(), we create a new AudioContext with the correct sampleRate.
-      if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
-        self._mobileUnloaded = true;
-        self.unload();
-      }
+      // if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
+      self._mobileUnloaded = true;
+      self.unload();
+      // }
 
       // Scratch buffer for enabling iOS to dispose of web audio buffers correctly, as per:
       // http://stackoverflow.com/questions/24119684
