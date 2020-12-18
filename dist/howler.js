@@ -24,7 +24,9 @@
     // Check if hack is necessary. Only occurs in iOS6+ devices
     // and only when you first boot the iPhone, or play a audio/video
     // with a different sample rate
-    alert("context.sampleRate" + context.sampleRate);
+    if (context) {
+      alert("context.sampleRate" + context.sampleRate);
+    }
     alert("desired sample rate" + desiredSampleRate);
     if (
       /(iPhone|iPad)/i.test(navigator.userAgent) &&
@@ -2756,6 +2758,7 @@
         Howler.usingWebAudio = false;
       }
     } catch (e) {
+      console.log("Howler error", e);
       Howler.usingWebAudio = false;
     }
 
