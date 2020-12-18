@@ -380,14 +380,14 @@
       // Some mobile devices/platforms have distortion issues when opening/closing tabs and/or web views.
       // Bugs in the browser (especially Mobile Safari) can cause the sampleRate to change from 44100 to 48000.
       // By calling Howler.unload(), we create a new AudioContext with the correct sampleRate.
-      // if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
-      // self._mobileUnloaded = true;
-      // self.unload();
-      // }
+      if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
+      self._mobileUnloaded = true;
+      self.unload();
+      }
 
       // Scratch buffer for enabling iOS to dispose of web audio buffers correctly, as per:
       // http://stackoverflow.com/questions/24119684
-      self._scratchBuffer = self.ctx.createBuffer(1, 1, 22050);
+      self._scratchBuffer = self.ctx.createBuffer(1, 1, 44100);
 
       // Call this method on touch start to create and play a buffer,
       // then check if the audio actually played to determine if
