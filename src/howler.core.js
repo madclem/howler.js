@@ -18,7 +18,7 @@
     var AudioCtor = window.AudioContext || window.webkitAudioContext;
 
     desiredSampleRate =
-      typeof desiredSampleRate === "number" ? desiredSampleRate : 44100;
+      typeof desiredSampleRate === "number" ? desiredSampleRate : 48000;
     var context = new AudioCtor();
 
     // Check if hack is necessary. Only occurs in iOS6+ devices
