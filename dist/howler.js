@@ -24,10 +24,13 @@
     // Check if hack is necessary. Only occurs in iOS6+ devices
     // and only when you first boot the iPhone, or play a audio/video
     // with a different sample rate
+    alert("context.sampleRate" + context.sampleRate);
+    alert("desired sample rate" + desiredSampleRate);
     if (
       /(iPhone|iPad)/i.test(navigator.userAgent) &&
       context.sampleRate !== desiredSampleRate
     ) {
+      alert("iPhone or iPad");
       var buffer = context.createBuffer(1, 1, desiredSampleRate);
       var dummy = context.createBufferSource();
       dummy.buffer = buffer;
