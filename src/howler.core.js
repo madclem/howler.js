@@ -381,8 +381,8 @@
       // Bugs in the browser (especially Mobile Safari) can cause the sampleRate to change from 44100 to 48000.
       // By calling Howler.unload(), we create a new AudioContext with the correct sampleRate.
       // if (!self._mobileUnloaded && self.ctx.sampleRate !== 44100) {
-      self._mobileUnloaded = true;
-      self.unload();
+      // self._mobileUnloaded = true;
+      // self.unload();
       // }
 
       // Scratch buffer for enabling iOS to dispose of web audio buffers correctly, as per:
